@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PHP Video Editor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: #f8f8f8;
+      }
+      form {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      button {
+        margin: 5px;
+        padding: 10px 15px;
+      }
+      input[type="file"] {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Upload a Video</h2>
+    <form action="process.php" method="POST" enctype="multipart/form-data">
+      <label>Primary Video:</label><br />
+      <input type="file" name="video" accept="video/*" required /><br /><br />
+      
+      <label>Second Video (for joining):</label><br />
+      <input type="file" name="video2" accept="video/*" /><br /><br />
+      
+      <button type="submit" name="action" value="resize">Resize</button>
+      <button type="submit" name="action" value="trim">Trim</button>
+      <button type="submit" name="action" value="thumbnail">Thumbnail</button>
+      <button type="submit" name="action" value="join">Join</button>
+    </form>
+  </body>
+</html>
