@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioning: Z-Index Layering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f8fafc;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Color overlay layer - z-index: 1 */
+        .color-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(59, 130, 246, 0.6);
+            z-index: 1;
+        }
+
+        /* Text layer - z-index: 2 (above overlay) */
+        .text-content {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2;
+        }
+
+        .text-content h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .layer-info {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            max-width: 700px;
+        }
+
+        .layer-info h3 {
+            font-size: 1rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .layer-info ul {
+            list-style: none;
+            color: #64748b;
+        }
+
+        .layer-info li {
+            padding: 5px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .layer-info li:last-child {
+            border-bottom: none;
+        }
+
+        .layer-info code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Positioning: Z-Index Layering</h1>
+    <p>Using <code>z-index</code> to control which elements appear on top when they overlap.</p>
+
+    <div class="image-container">
+        <img src="https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_1280.jpg" alt="Tree silhouette">
+        <div class="color-overlay"></div>
+        <div class="text-content">
+            <h2>Blue Overlay Effect</h2>
+            <p>Text appears above the color overlay</p>
+        </div>
+    </div>
+
+    <div class="layer-info">
+        <h3>Layer Stack (bottom to top):</h3>
+        <ul>
+            <li><strong>Layer 0:</strong> Image (default stacking)</li>
+            <li><strong>Layer 1:</strong> Color Overlay (<code>z-index: 1</code>) — blue tint</li>
+            <li><strong>Layer 2:</strong> Text Content (<code>z-index: 2</code>) — appears on top</li>
+        </ul>
+    </div>
+</body>
+
+</html>

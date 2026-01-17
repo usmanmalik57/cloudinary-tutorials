@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility: Semantic HTML</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f8fafc;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        p.intro {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .demo-card h3 {
+            font-size: 1rem;
+            color: #475569;
+            margin-bottom: 15px;
+        }
+
+        /* Semantic Figure Element */
+        .image-figure {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image-figure img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-figure figcaption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+            color: white;
+        }
+
+        .image-figure figcaption h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .image-figure figcaption p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+
+        /* High Contrast Example */
+        .high-contrast {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .high-contrast img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .high-contrast .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .high-contrast .overlay h4 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 0 25px;
+        }
+
+        .info-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            max-width: 800px;
+        }
+
+        .info-box h3 {
+            font-size: 1rem;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: #78350f;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .info-box code {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Accessibility & SEO: Semantic HTML</h1>
+    <p class="intro">Using semantic elements like <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> for
+        better accessibility and SEO.</p>
+
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>Semantic &lt;figure&gt; with &lt;figcaption&gt;</h3>
+            <figure class="image-figure">
+                <img src="https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg"
+                    alt="African elephant walking through tall grass in savanna">
+                <figcaption>
+                    <h4>African Safari</h4>
+                    <p>Witness majestic wildlife in their natural habitat</p>
+                </figcaption>
+            </figure>
+        </div>
+
+        <div class="demo-card">
+            <h3>High Contrast Overlay (7:1+ ratio)</h3>
+            <div class="high-contrast">
+                <img src="https://cdn.pixabay.com/photo/2017/03/29/04/47/high-heels-2184095_1280.jpg"
+                    alt="Fashion shoes display">
+                <div class="overlay">
+                    <h4>New Collection Available</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h3>Accessibility Best Practices:</h3>
+        <ul>
+            <li>Always provide descriptive <code>alt</code> text that describes the image content</li>
+            <li>Use semantic HTML elements (<code>&lt;figure&gt;</code>, <code>&lt;figcaption&gt;</code>, headings)</li>
+            <li>Maintain minimum 4.5:1 contrast ratio for normal text (WCAG AA)</li>
+            <li>Don't rely on images alone to convey critical information</li>
+            <li>Keep important text in the DOM, not baked into images</li>
+        </ul>
+    </div>
+</body>
+
+</html>

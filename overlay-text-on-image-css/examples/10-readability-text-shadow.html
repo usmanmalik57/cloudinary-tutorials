@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readability: Text Shadow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f8fafc;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        p.intro {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+        }
+
+        .demo-card h3 {
+            font-size: 1rem;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        /* No shadow - hard to read */
+        .no-shadow {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Single shadow */
+        .single-shadow {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Multiple shadows for strong effect */
+        .multi-shadow {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Readability: Text Shadow</h1>
+    <p class="intro">Using <code>text-shadow</code> to create contrast between text and busy backgrounds.</p>
+
+    <div class="demo-grid">
+        <div class="demo-card">
+            <h3>No Shadow (Hard to Read)</h3>
+            <div class="image-container">
+                <img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
+                    alt="Colorful flowers">
+                <div class="no-shadow">Spring Garden</div>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Single Shadow</h3>
+            <div class="image-container">
+                <img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
+                    alt="Colorful flowers">
+                <div class="single-shadow">Spring Garden</div>
+            </div>
+        </div>
+
+        <div class="demo-card">
+            <h3>Multiple Shadows (Best Contrast)</h3>
+            <div class="image-container">
+                <img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
+                    alt="Colorful flowers">
+                <div class="multi-shadow">Spring Garden</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
