@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudinary Auto-Optimization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .box {
+            border: 2px solid #ddd;
+            padding: 15px;
+        }
+
+        img {
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cloudinary Automatic Optimization</h1>
+    <p>This page demonstrates how Cloudinary's URL parameters automatically optimize images</p>
+
+    <h2>1. Quality Optimization (q_auto)</h2>
+    <p>The <code>q_auto</code> parameter automatically selects the best compression quality</p>
+
+    <div class="comparison">
+        <div class="box">
+            <h3>Without q_auto</h3>
+            <img src="https://res.cloudinary.com/demo/image/upload/w_400/sample.jpg" alt="Original">
+            <p><strong>URL:</strong></p>
+            <code>/w_400/sample.jpg</code>
+        </div>
+
+        <div class="box">
+            <h3>With q_auto</h3>
+            <img src="https://res.cloudinary.com/demo/image/upload/q_auto,w_400/sample.jpg" alt="q_auto">
+            <p><strong>URL:</strong></p>
+            <code>/q_auto,w_400/sample.jpg</code>
+        </div>
+    </div>
+
+    <h2>2. Format Optimization (f_auto)</h2>
+    <p>The <code>f_auto</code> parameter automatically delivers WebP or AVIF to supporting browsers</p>
+
+    <div class="comparison">
+        <div class="box">
+            <h3>JPEG (default)</h3>
+            <img src="https://res.cloudinary.com/demo/image/upload/w_400/sample.jpg" alt="JPEG">
+            <p><strong>URL:</strong></p>
+            <code>/w_400/sample.jpg</code>
+        </div>
+
+        <div class="box">
+            <h3>With f_auto</h3>
+            <img src="https://res.cloudinary.com/demo/image/upload/f_auto,w_400/sample.jpg" alt="f_auto">
+            <p><strong>URL:</strong></p>
+            <code>/f_auto,w_400/sample.jpg</code>
+            <p><em>Your browser receives the best supported format automatically</em></p>
+        </div>
+    </div>
+
+    <h2>3. Combined Optimization</h2>
+    <p>Use both parameters together for maximum savings</p>
+
+    <div class="comparison">
+        <div class="box">
+            <h3>No optimization</h3>
+            <img src="https://res.cloudinary.com/demo/image/upload/w_400/sample.jpg" alt="Original">
+            <code>/w_400/sample.jpg</code>
+        </div>
+
+        <div class="box">
+            <h3>f_auto + q_auto</h3>
+            <img src="https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_400/sample.jpg" alt="Optimized">
+            <code>/f_auto,q_auto,w_400/sample.jpg</code>
+            <p><em>Typically 50-80% smaller</em></p>
+        </div>
+    </div>
+
+    <script>
+        // Log actual file sizes to console
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function () {
+                fetch(this.src)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        console.log(this.alt + ': ' + (blob.size / 1024).toFixed(1) + ' KB');
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>

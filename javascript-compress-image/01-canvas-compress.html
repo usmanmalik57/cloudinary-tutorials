@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Compression Demo</title>
+</head>
+
+<body>
+    <h1>Image Compression with Canvas API</h1>
+
+    <h2>1. Compress Image from URL</h2>
+    <input type="text" id="imageUrl" placeholder="Enter image URL (e.g., from Pixabay)" style="width: 400px;">
+    <button onclick="compressRemoteImage()">Compress Image</button>
+
+    <h2>2. Compress Local Image</h2>
+    <input type="file" onchange="compressLocalImage(event)" accept="image/*">
+
+    <div id="status"></div>
+
+    <script>
+        // Compress a remote image from user-provided URL
+        function compressRemoteImage() {
+            const url = document.getElementById('imageUrl').value;
+            if (!url) {
+                alert('Please enter an image URL');
+                return;
+            }
+
+            const img = new Image();
+            img.crossOrigin = 'anonymous';  // Allow cross-origin image loading
+
+            img.onload = function () {
+                compressAndDownload(img, 'compressed-remote.jpg');
+            };
+
+            img.onerror = function () {
+                document.getElementById('status').innerHTML =
+                    '<p style="color: red;">Failed to load image. Check the URL or CORS settings.</p>';
+            };
+
+            img.src = url;
+        }
+
+        // Compress a local image file
+        function compressLocalImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    compressAndDownload(img, 'compressed-local.jpg');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Main compression function
+        function compressAndDownload(img, filename) {
+            // Create canvas and set size
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            // Draw image on canvas
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            // Convert to compressed JPEG (70% quality)
+            canvas.toBlob(function (blob) {
+                // Display size
+                document.getElementById('status').innerHTML =
+                    `<p style="color: green;">Compressed to ${(blob.size / 1024).toFixed(1)} KB - Check your downloads!</p>`;
+
+                // Download
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }, 'image/jpeg', 0.7);
+        }
+    </script>
+</body>
+
+</html>
